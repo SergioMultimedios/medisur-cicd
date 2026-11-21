@@ -232,12 +232,10 @@ docs/                     Reporte, diagramas y evidencias
 - [`docs/live-validation.json`](docs/live-validation.json): validación de pruebas, Sonar y monitoreo.
 - [`docs/evidence/`](docs/evidence/): capturas de Jenkins, SonarQube y Grafana.
 
-La documentación y la preparación se asistieron con Cortex Code, modelo `openai-gpt-6-astra`. La [declaración de uso de IA](docs/reporte.md#8-declaración-de-uso-de-inteligencia-artificial) delimita esa asistencia frente a la revisión humana.
+La documentación y la preparación se asistieron con Cortex Code, modelo `claude-opus-5`. La [declaración de uso de IA](docs/reporte.md#8-declaración-de-uso-de-inteligencia-artificial) delimita esa asistencia frente a la revisión humana.
 
 ## Pendientes
 
-- Nombres y roles de los integrantes del equipo.
 - Video de respaldo de 10 a 15 minutos.
-- Primera ejecución real del job de ramas `medisur-branches` con un push de rama.
 - Confirmación docente del disco de 30 GB del clúster y de Ubuntu 24.04.
 - Conciliación final de costos, sujeta a la latencia de facturación de Azure.
