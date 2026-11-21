@@ -132,7 +132,7 @@ La publicación y el despliegue ocurren únicamente en `main`. Las credenciales 
 
 La rama `main` está protegida en GitHub: exige Pull Request con una aprobación, descarta las aprobaciones obsoletas cuando llegan commits nuevos, prohíbe el force push y el borrado de la rama, obliga a historial lineal y pide que las conversaciones queden resueltas antes de integrar. La regla todavía no se aplica a administradores, así que la disciplina de abrir Pull Request depende en parte del acuerdo del equipo.
 
-Para las ramas de funcionalidad existe el job `medisur-branches`, que responde a la expresión `origin/(?!main$).*`. Ejecuta pruebas y análisis contra un proyecto de Sonar aparte y no publica imagen ni despliega. Está configurado y su primera ejecución con un push real de rama queda pendiente.
+Para las ramas de funcionalidad existe el job `medisur-branches`, que responde a la expresión `origin/(?!main$).*`. Ejecuta pruebas y análisis contra un proyecto de Sonar aparte y no publica imagen ni despliega. Se verificó con la rama `prueba-ramas`: el webhook de GitHub disparó la ejecución con el push y las cuatro etapas del job —checkout, pruebas con cobertura, análisis de Sonar y puerta de calidad— terminaron en `SUCCESS` en 33 segundos, sin publicar imagen ni tocar el clúster.
 
 El despliegue que queda documentado en las evidencias es el build 3 de `medisur-main`, que terminó en `SUCCESS` con 112 segundos de duración y las 35 pruebas aprobadas. La versión en servicio durante esa validación fue `0.1.0-f04534bb54d0`, visible tanto en las métricas de Prometheus como en el análisis de SonarQube. Los dos builds anteriores del mismo job también terminaron en `SUCCESS`.
 
@@ -265,7 +265,7 @@ El umbral de cobertura quedó en 60 %, por debajo del 93.94 % que mide la aplica
 
 El piloto tiene límites claros. El clúster tiene un solo nodo, así que las dos réplicas protegen contra la caída de un pod, no contra la de la máquina. El PVC funciona como almacenamiento, sin respaldo ni restauración probada. La reversión devuelve el Deployment y deja la base de datos como está. El monitoreo vive en la misma VM que vigila, y si esa máquina se detiene se pierde la visibilidad hasta que vuelva. Llevar esto a un servicio clínico real pediría al menos un segundo nodo, respaldo con restauración probada y una revisión de los permisos que hoy tiene el pipeline.
 
-Queda pendiente la primera ejecución del job `medisur-branches` con un push real de rama, y dos desviaciones por confirmar con el docente: el disco de 30 GB del clúster y su sistema operativo Ubuntu 24.04 en lugar de 22.04.
+Quedan dos desviaciones por confirmar con el docente: el disco de 30 GB del clúster y su sistema operativo Ubuntu 24.04 en lugar de 22.04.
 
 ## 13. Anexos
 

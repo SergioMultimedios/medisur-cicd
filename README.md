@@ -72,7 +72,7 @@ El segundo comando crea o reutiliza un volumen nombrado, que sobrevive al borrad
 
 `Jenkinsfile` ejecuta pruebas, análisis Sonar, quality gate, construcción de imagen y publicación en GHCR, y despliega únicamente desde `main`. Requiere un ejecutor Linux con la etiqueta `medisur-ci` y Docker, Bash, kubectl, curl y jq disponibles. Usa las credenciales `ghcr`, `sonar-token`, `sonarqube-webhook-secret` y `medisur-kubeconfig`, además de la credencial de checkout. La instalación de SonarQube se llama `SonarQube` tanto en el `Jenkinsfile` como en la configuración JCasC. El gate exige cobertura mínima de 60 %.
 
-El job `medisur-branches` cubre las ramas distintas de `main` con el regex `origin/(?!main$).*`, un proyecto Sonar separado y sin publicación ni despliegue. Está configurado mediante `scripts/configure-feature-ci.py`. Se verificó contra la rama `prueba-ramas` con cuatro etapas en verde —checkout, pruebas con cobertura, análisis de Sonar y puerta de calidad— en 50 segundos.
+El job `medisur-branches` cubre las ramas distintas de `main` con el regex `origin/(?!main$).*`, un proyecto Sonar separado y sin publicación ni despliegue. Está configurado mediante `scripts/configure-feature-ci.py`. Se verificó contra la rama `prueba-ramas`: el webhook disparó la ejecución con el push y las cuatro etapas —checkout, pruebas con cobertura, análisis de Sonar y puerta de calidad— terminaron en verde en 33 segundos.
 
 Jenkins corre la versión 2.580.2 con 85 plugins fijados en `infra/tools/jenkins/plugins.txt`; el cotejo del controlador en ejecución los reporta activos y con las versiones exactas del manifiesto.
 
